@@ -1,0 +1,154 @@
+{% extends '../layouts/base_helsinki.html' %}
+{% load static %}
+{% block title %} Tableau de bord {% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <div class="nk-content-inner">
+        <div class="nk-content-body">   
+            <h2 class="text-center">Bienvenue sur la partie administration</h2>
+                <div class="nk-block-head nk-block-head-sm">
+                    <div class="nk-block-between">
+                        <div class="nk-block-head-content">
+                            <h3 class="nk-block-title page-title">Tableau de Bord</h3>
+                        </div><!-- .nk-block-head-content -->
+                    </div><!-- .nk-block-between -->
+                </div><!-- .nk-block-head -->
+                <div class="nk-block" id="content-dashbord">
+                    <div class="row g-gs">
+                        <div class="col-xxl-3 col-sm-6">
+                            <div class="card">
+                                <div class="nk-ecwg nk-ecwg6">
+                                    <div class="card-inner">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div class="overlay d-none">
+                                                <div class="w-100 d-flex justify-content-center align-items-center">
+                                                    <div class="spinner"></div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="card-title-group">
+                                                    <div class="card-title">
+                                                        <h6 class="title">Nombre total de cours que vous dispensé cette session</h6>
+                                                    </div>
+                                                </div>
+                                                <div class="data">
+                                                    <div class="data-group">
+                                                        <div class="amount mt-3" id="nb_total_cours">
+                                                            <h2>{{nombre_total_de_cours}}</h2>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="height: 100px; width: 100px;">
+                                                <img src="{% static 'digitalcode-a/images/icons/codes.svg' %}" alt="Nombre Total de cours" class="img-fluid">
+                                            </div>
+                                        </div>
+                                    </div><!-- .card-inner -->
+                                </div><!-- .nk-ecwg -->
+                            </div><!-- .card -->
+                        </div>
+                        <div class="col-xxl-3 col-sm-6">
+                            <div class="card">
+                                <div class="nk-ecwg nk-ecwg6">
+                                    <div class="card-inner">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div class="overlay d-none">
+                                                <div class="w-100 d-flex justify-content-center align-items-center">
+                                                    <div class="spinner"></div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="card-title-group">
+                                                    <div class="card-title">
+                                                        <h6 class="title">Nombre total de travaux que vous avez donné cette session</h6>
+                                                    </div>
+                                                </div>
+                                                <div class="data">
+                                                    <div class="data-group">
+                                                        <div class="amount" id="nb_ticket">
+                                                            <h2>{{nombre_total_de_cours}}</h2>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="height: 100px; width: 100px;">
+                                                <i class="icon ni ni-users" style="font-size: 80px;"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- .nk-ecwg -->
+                            </div><!-- .card -->
+                        </div><!-- .col -->
+                        <div class="col-xxl-3 col-sm-6">
+                            <div class="card">
+                                <div class="nk-ecwg nk-ecwg6">
+                                    <div class="card-inner">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div class="overlay d-none">
+                                                <div class="w-100 d-flex justify-content-center align-items-center">
+                                                    <div class="spinner"></div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="card-title-group">
+                                                    <div class="card-title">
+                                                        <h6 class="title">Nombre total de documents</h6>
+                                                    </div>
+                                                </div>
+                                                <div class="data">
+                                                    <div class="data-group">
+                                                        <div class="amount" id="nb_ticket">
+                                                            <h2>{{nombre_total_de_cours}}</h2>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="height: 100px; width: 100px;">
+                                                <img src="{% static 'digitalcode-a/images/icons/file-pdf.svg' %}" alt="Nombre total de document" class="img-fluid">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- .nk-ecwg -->
+                            </div><!-- .card -->
+                        </div><!-- .col -->
+                        <div class="col-xxl-3 col-sm-6">
+                            <div class="card">
+                                <div class="nk-ecwg nk-ecwg6">
+                                    <div class="card-inner">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div class="overlay d-none">
+                                                <div class="w-100 d-flex justify-content-center align-items-center">
+                                                    <div class="spinner"></div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="card-title-group">
+                                                    <div class="card-title">
+                                                        <h6 class="title">Nombre total de remise</h6>
+                                                    </div>
+                                                </div>
+                                                <div class="data">
+                                                    <div class="data-group">
+                                                        <div class="amount" id="nb_ticket">
+                                                            <h2>{{nombre_total_de_cours}}</h2>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="height: 100px; width: 100px;">
+                                                <img src="{% static 'digitalcode-a/images/icons/doc-checked.svg' %}" alt="Nombre total de remise" class="img-fluid">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- .nk-ecwg -->
+                            </div><!-- .card -->
+                        </div><!-- .col -->
+                    </div><!-- .row -->
+                </div><!-- .nk-block -->
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+{% endblock %}

@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr" class="js">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Softnio">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <!-- Fav Icon  -->
+    <link rel="shortcut icon" href="{% static 'digitalcode-a/images/favicon.png' %}">
+    <!-- Page Title  -->
+    <title>{% block title %} Evenco {% endblock %}</title>
+    <!-- StyleSheets  -->
+    <link rel="stylesheet" href="{% static 'digitalcode-a/assets/css/dashlite.css' %}">
+    <link id="skin-default" rel="stylesheet" href="{% static 'digitalcode-a/assets/css/theme.css' %}">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    {% block css %}
+    {% endblock %}
+</head>
+
+<body class="nk-body bg-lighter npc-default has-sidebar ">
+    <div class="nk-app-root">
+        <!-- main @s -->
+        <div class="nk-main ">
+            <!-- sidebar @s -->
+            {% include '../dashboard/partials/sidebar.html' %}
+            <!-- sidebar @e -->
+            <!-- wrap @s -->
+            <div class="nk-wrap ">
+                <!-- main header @s -->
+                {% include '../dashboard/partials/header.html' %}
+                <!-- main header @e -->
+                <!-- content @s -->
+                <div class="nk-content ">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+                <!-- content @e -->
+                <!-- footer @s -->
+                {% include '../dashboard/partials/footer.html' %}
+                <!-- footer @e -->
+            </div>
+            <!-- wrap @e -->
+        </div>
+        <!-- main @e -->
+    </div>
+    <!-- app-root @e -->
+    
+    <!-- JavaScript -->
+    <script src="{% static 'digitalcode-a/assets/js/bundle.js' %}"></script>
+    <script src="{% static 'digitalcode-a/assets/js/scripts.js' %}"></script>
+    <script src="{% static 'digitalcode-a/assets/js/index.global.min.js' %}"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    
+    
+    <script>
+        $(function () {
+          var url = window.location.href;
+          $(this).parent().removeClass("active current-page");
+          $("li.nk-menu-item a").each(function () {
+            $(this).parent().removeClass("active current-page");
+            if (url == (this.href)) {
+              $(this).parent().addClass("active current-page");
+              $(this).parent().parent().parent().addClass("active current-page");
+            }
+          });
+        });
+    </script>
+    {% block js %}
+    {% endblock %}
+</body>
+
+</html>
