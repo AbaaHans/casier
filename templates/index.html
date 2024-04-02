@@ -1,14 +1,14 @@
 {% extends 'layouts/base.html' %}
-
+{% load static %}
 {% block content %}
 
-    <div class="page-header min-vh-80" style="background-image: url('https://images.unsplash.com/photo-1630752708689-02c8636b9141?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2490&q=80')">
+    <div class="page-header min-vh-80" style="background-image: url({% static 'assets/img/justice-Gabon.jpg' %})">
         <span class="mask bg-gradient-dark opacity-6"></span>
         <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto">
             <div class="text-center">
-                <h1 class="text-white">Bienvenue sur la plateforme de demande de casier judiciaire</h1>
+                <h1 class="text-white">Bienvenue sur la plateforme de demande du casier judiciaire</h1>
                 <h3 class="text-white">Qui vous permettra de faire votre prospection pour l'obtention de votre casier</h3>
             </div>
             </div>
@@ -34,15 +34,15 @@
             </p>
             <p class="pe-md-5 mb-4"><strong>Vous devez notez ce code la quelque part afin de faire la suivie de votre demande.</strong></p>
               <div class="github-buttons">
-                <a href="https://www.creative-tim.com/product/material-kit-pro?ref=index-mk2" class="btn bg-gradient-primary mb-5 mb-sm-0">Commencer la démarche >></a>
+                <a href="{% url 'demandecasier' %}" class="btn bg-gradient-primary mb-5 mb-sm-0">Commencer la démarche >></a>
                 <div class="github-button">
                   <span></span>
                 </div>
               </div>
             </div>
             <div class="col-md-5 col-12 my-auto">
-              <a href="https://www.creative-tim.com/product/material-kit-pro?ref=index-mk2">
-                <img class="w-100 border-radius-lg shadow-lg" src="https://s3.amazonaws.com/creativetim_bucket/products/46/original/material-kit-pro.jpg?1632843641" alt="Product Image">
+              <a href="{% url 'demandecasier' %}">
+                <img class="w-100 border-radius-lg shadow-lg" src="{% static 'assets/img/palais-de-justice.jpeg' %}" alt="Palais de justice">
               </a>
             </div>
           </div>
@@ -59,15 +59,15 @@
                 vers une page là on va vous demandez le code de suivi qui a été généré lors de la demande.
             </p>
            <div class="github-buttons">
-                <a href="https://www.creative-tim.com/product/material-kit-pro?ref=index-mk2" class="btn bg-gradient-primary mb-5 mb-sm-0"> Suivre la demande >></a>
+                <a href="{% url 'suivicasier' %}" class="btn bg-gradient-primary mb-5 mb-sm-0"> Suivre la demande >></a>
                 <div class="github-button">
                   <span></span>
                 </div>
               </div>
             </div>
             <div class="col-md-5 col-12 my-auto">
-              <a href="https://www.creative-tim.com/product/material-kit-pro?ref=index-mk2">
-                <img class="w-100 border-radius-lg shadow-lg" src="https://s3.amazonaws.com/creativetim_bucket/products/46/original/material-kit-pro.jpg?1632843641" alt="Product Image">
+              <a href="{% url 'suivicasier' %}">
+                <img class="w-100 border-radius-lg shadow-lg" src="{% static 'assets/img/justice.jpeg' %}" alt="Justice">
               </a>
             </div>
           </div>

@@ -18,12 +18,11 @@
     <div class="card card-body shadow-xl mx-3 mx-md-4 mt-n6">
         <div class="container">
         <div class="section text-center">
-            <h2 class="title">Connexion</h2>
+            <h2 class="title">Suivi du casier judiciaire</h2>
         </div>
         </div>
     </div>
 
-    
 
     <section class="my-5">
         <div class="container">
@@ -35,20 +34,18 @@
                 {% endfor %}
             {% endif %}
           <div class="row d-flex justify-content-center align-items-center">
-            <div class="col-md-12 col-lg-6">
-                <form action="{% url 'AuthGateway:connexion' %}"  method="post">
-                    {% csrf_token %}
-                    <div class="input-group input-group-static mb-4">
-                        <label>Adresse email</label>
-                        <input type="email" class="form-control" placeholder="Exemple : john@doe.com" name="pseudo" required>
+            <div class="col-12">
+                <h3 class="text-center">Demande de casier judiciaire N° : {{code_suivi}}</h3>
+                <h4 class="text-center alert alert-success text-white my-5">ETAT DE LA DEMANDE : {{demande.get_etat_display}}</h4>
+                <div class="row">
+                    <div class="col-lg-6 col-md-12 d-flex justify-content-center align-items-center">
+                        <a href="{% url 'demandecasier' %}" class="text-white btn btn-lg bg-gradient-primary w-100">Faire une nouvelle demande</a>
                     </div>
-
-                    <div class="input-group input-group-static mb-4">
-                        <label>Mot de passe</label>
-                        <input type="password" class="form-control" name="mdp" placeholder="**********" required>
-                      </div>
-                    <button type="submit" class="btn btn-primary">Se connecter</button>
-                  </form>
+                    <div class="col-lg-6 col-md-12 d-flex justify-content-center align-items-center">
+                        <a href="{% url 'suivicasier' %}" class="text-white btn btn-lg bg-gradient-primary w-100">Faire le suivi de ma demande</a>
+                    </div>
+                </div>
+            </div>
           </div>
         </div>
     </section>

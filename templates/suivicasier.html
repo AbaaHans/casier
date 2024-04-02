@@ -18,7 +18,7 @@
     <div class="card card-body shadow-xl mx-3 mx-md-4 mt-n6">
         <div class="container">
         <div class="section text-center">
-            <h2 class="title">Connexion</h2>
+            <h2 class="title">Suivi du casier judiciaire</h2>
         </div>
         </div>
     </div>
@@ -36,19 +36,18 @@
             {% endif %}
           <div class="row d-flex justify-content-center align-items-center">
             <div class="col-md-12 col-lg-6">
-                <form action="{% url 'AuthGateway:connexion' %}"  method="post">
+                <form action="."  method="post">
                     {% csrf_token %}
-                    <div class="input-group input-group-static mb-4">
-                        <label>Adresse email</label>
-                        <input type="email" class="form-control" placeholder="Exemple : john@doe.com" name="pseudo" required>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="input-group input-group-static mb-4">
+                                <label for="numero_suivi">Numero de suivi</label>
+                                <input type="number" min="0" max="99999999" class="form-control" placeholder="Exemple : 1234564261" name="numeroSuiviCasier" id="numero_suivi" required>  
+                            </div>
+                        </div>
                     </div>
-
-                    <div class="input-group input-group-static mb-4">
-                        <label>Mot de passe</label>
-                        <input type="password" class="form-control" name="mdp" placeholder="**********" required>
-                      </div>
-                    <button type="submit" class="btn btn-primary">Se connecter</button>
-                  </form>
+                    <button type="submit" class="btn btn-primary">Soumettre</button>
+                </form>
           </div>
         </div>
     </section>

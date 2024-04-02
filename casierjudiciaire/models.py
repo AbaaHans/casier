@@ -26,3 +26,6 @@ class CasierJudiciaire(models.Model):
     piece_justificatif = models.FileField(upload_to="static/piecesjustificatifs/")
     etat = models.CharField(max_length=255,choices=ETAT_DEMANDE_TYPES_CHOICES,default="traitement")
     genre = models.CharField(max_length=255,choices=GENRE_CHOICES,default="homme")
+
+    def __str__(self) -> str:
+        return "Demande de casier judiciaire N° : " + str(self.code_demande)

@@ -1,8 +1,10 @@
 from django import forms
 from .models import CasierJudiciaire
-
+from django.core.validators import FileExtensionValidator, RegexValidator
 
 class CasierJudiciareForm(forms.ModelForm):
+    telephone_regex=RegexValidator(regex=r'^\+?1?\d{8,15}$', message="Le numero doit être du format: '+999999999'. 15 chiffres autorisés.")
+    file_extensions= FileExtensionValidator(message="Seul les fichiers d'extension de type jpeg, png, jpg, pdf sont autorisés.",allowed_extensions=["jpeg","png","jpg","pdf"])
     class Meta:
         model = CasierJudiciaire
         fields = ["nom","prenom","nom_pere","nom_mere","date_naisance","lieu_naissance","pays","nationalite",
@@ -43,3 +45,55 @@ class CasierJudiciareForm(forms.ModelForm):
             'telephone' : 'Numéro de téléphone',
             'piece_justificatif' : 'Pièce justificative en votre posséssion'
         }
+
+        error_messages = {
+            'nom' : {
+                'required' : 'Le champ votre Nom est requis.'
+            },
+            'prenom' : {
+                'required' : 'Le champ votre Prenom est requis.'
+            },
+            'nom_pere' : {
+                'required' : 'Le champ Nom et prénom du père est requis.'
+            },
+            'nom_mere' : {
+                'required' : 'Le champ Nom et prénom de la mère est requis.'
+            },
+            'date_naisance' : {
+                'required' : 'Le champ Date de Naissance est requis.'
+            },
+             'lieu_naissance' : {
+                'required' : 'Le champ Date de Naissance est requis.'
+            },
+             'pays' : {
+                'required' : 'Le champ Lieu de Naissance est requis.'
+            },
+             'nationalite' : {
+                'required' : 'Le champ Nationalité est requis.'
+            },
+             'profession' : {
+                'required' : 'Le champ Profession est requis.'
+            },
+             'etat_familiale' : {
+                'required' : 'Le champ Etat civil est requis.'
+            },
+             'adresse' : {
+                'required' : 'Le champ Adresse est requis.'
+            },
+             'genre' : {
+                'required' : 'Le champ Genre est requis.'
+            },
+             'telephone' : {
+                'required' : 'Le champ Telephone est requis.'
+            },
+             'piece_justificatif' : {
+                'required' : 'Le champ Pièce justificative est requis.',
+                'invalid' : "Seul les fichiers d'extension de type jpeg, png, jpg, pdf sont autorisés."
+            },
+            
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(CasierJudiciareForm, self).__init__(*args, **kwargs)
+        self.fields['piece_justificatif'].validators.append(self.file_extensions)
+        self.fields['telephone'].validators.append(self.telephone_regex)
