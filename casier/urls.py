@@ -20,9 +20,7 @@ from .views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name="index"),
-    path('connexion/',connexion,name='connexion'),
     path('casier/demande/',demandecasier,name='demandecasier'),
     path('casier/suivi/',suivicasier,name='suivicasier'),
-    path('dashboard/',include('administration.urls')),
     path('authentification/',include('auth_gateway.urls'))
 ]
