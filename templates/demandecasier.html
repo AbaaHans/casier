@@ -63,3 +63,15 @@
     </section>
 
 {% endblock %}
+
+
+{% block scripts %}
+    <script>
+        document.addEventListener("DOMContentLoaded",(event)=>{
+            var labelLocalite = document.querySelector("select#id_localite")
+            var parentLocalite = labelLocalite.parentElement.parentElement
+            parentLocalite.classList = "col-md-6 col-lg-12"
+        })
+    </script>
+
+{% endblock %}

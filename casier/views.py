@@ -5,6 +5,8 @@ from casierjudiciaire.models import CasierJudiciaire
 from django.contrib import messages
 from casierjudiciaire.utilitaires import genererCodeSuivie
 
+import requests
+
 
 def index(request:HttpRequest):
     return render(request, 'index.html')
@@ -24,9 +26,32 @@ def demandecasier(request:HttpRequest):
             code_suivi_demande = genererCodeSuivie()
             demande : CasierJudiciaire = form.save(commit=False)
             demande.code_demande = code_suivi_demande
-            demande.save()
 
-            return render(request, "succesdemande.html",{"code_suivi":code_suivi_demande})
+            files = request.FILES
+            files_to_send = {
+                'piece_justificatif': (files['piece_justificatif'].name, files['piece_justificatif'].file),
+            }
+
+
+            data_to_send = form.cleaned_data
+            data_to_send.pop("piece_justificatif")
+            data_to_send.pop("localite")
+            data_to_send["code_demande"] = code_suivi_demande
+
+
+            url = demande.localite.backend_api_gateway + "create-casier/"
+
+            response = requests.post(url, data=data_to_send, files=files_to_send)
+
+            if response.status_code == 200:
+                data_json = response.json()
+                success = data_json["success"]
+                if success:
+                    demande.backoffice_received = True
+                    demande.save()
+                    return render(request, "succesdemande.html",{"code_suivi":code_suivi_demande})
+            else:
+                return render(request,"demandecasier.html",{"form":form})
         else:
             return render(request,"demandecasier.html",{"form":form})
     else:
@@ -57,9 +82,33 @@ def suivicasier(request:HttpRequest):
             if code_suivi_demande > 99999999:
                 messages.error(request, "Le numero de suivi ne peut depasser 99999999.")
                 return redirect("suivicasier")
-               
+            
             demande = CasierJudiciaire.objects.get(code_demande=code_suivi_demande)
-            return render(request,"suivicasiersucces.html",{"demande":demande,"code_suivi":code_suivi_demande})
+            
+            #Faire la requete vers le backoffice concerné
+            # et retourné la réponse convenment.
+
+            data_to_send = {
+                "numeroSuiviCasier" : int(demande.code_demande)
+            }
+
+            url = demande.localite.backend_api_gateway + "suivi-casier/"
+
+            response = requests.post(url, data=data_to_send)
+
+            if response.status_code == 200:
+                data_json = response.json()
+                success = data_json["success"]
+                if success:
+                    etat_demande = data_json["message"]
+                    demande.etat = etat_demande
+                    demande.save()
+                    return render(request,"suivicasiersucces.html",{"demande":demande,"code_suivi":code_suivi_demande})
+                else:
+                    erreur_suivi = data_json["message"]
+                    return render(request, "errorsuivicasier.html",{"code_suivi":code_suivi_demande,"erreur":erreur_suivi})
+            erreur_suivi = response.json()["message"]
+            return render(request, "errorsuivicasier.html",{"code_suivi":code_suivi_demande,"erreur":erreur_suivi})
         except CasierJudiciaire.DoesNotExist:
             messages.error(request, "Aucune demande de casier judiciare correspondate n'a trouvé pour ce numero de suivi.")
             return redirect("suivicasier")

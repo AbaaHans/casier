@@ -1,0 +1,54 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="page-header min-vh-80" style="background-image: url({% static 'assets/img/justice-Gabon.jpg' %})">
+        <span class="mask bg-gradient-dark opacity-6"></span>
+        <div class="container">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+            <div class="text-center">
+                <h1 class="text-white">Bienvenue sur la plateforme de demande de casier judiciaire et d'acte de naissance</h1>
+                <h3 class="text-white">Qui vous permettra de faire votre prospection pour l'obtention de votre casier et d'acte de naissance</h3>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="card card-body shadow-xl mx-3 mx-md-4 mt-n6">
+        <div class="container">
+        <div class="section text-center">
+            <h2 class="title">Suivi de casier judiciaire</h2>
+        </div>
+        </div>
+    </div>
+
+
+    <section class="my-5">
+        <div class="container">
+            {% if messages %}
+                {% for message in messages %}
+                    <div {% if message.tags %} class="alert alert-{{ message.tags }} mb-3" {% endif %}>
+                        <span  class="text-white d-flex justify-content-center">{{ message }}</span>
+                    </div>
+                {% endfor %}
+            {% endif %}
+          <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-12">
+                <h3 class="text-center">Une erreur est survenue.</h3>
+                <h4 class="text-center">CODE DE SUIVI : {{code_suivi}}</h4>
+                <h4 class="text-center alert alert-success text-white my-5">ERREUR : {{erreur}}</h4>
+                <div class="row">
+                    <div class="col-lg-6 col-md-12 d-flex justify-content-center align-items-center">
+                        <a href="{% url 'demandecasier' %}" class="text-white btn btn-lg bg-gradient-primary w-100">Faire une nouvelle demande</a>
+                    </div>
+                    <div class="col-lg-6 col-md-12 d-flex justify-content-center align-items-center">
+                        <a href="{% url 'suivicasier' %}" class="text-white btn btn-lg bg-gradient-primary w-100">Faire le suivi de ma demande</a>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+    </section>
+
+{% endblock %}
