@@ -8,7 +8,7 @@ class CasierJudiciareForm(forms.ModelForm):
     class Meta:
         model = CasierJudiciaire
         fields = ["nom","prenom","nom_pere","nom_mere","date_naisance","lieu_naissance","pays","nationalite",
-                  "profession","etat_familiale","adresse","telephone","piece_justificatif","genre"]
+                  "profession","etat_familiale","adresse","telephone","piece_justificatif","genre","localite"]
         
         widgets={
             'nom' : forms.TextInput(attrs={'class':"form-control"}),
@@ -24,7 +24,8 @@ class CasierJudiciareForm(forms.ModelForm):
             'adresse' : forms.TextInput(attrs={'class':"form-control"}),
             'telephone' : forms.TextInput(attrs={'class':"form-control"}),  
             'genre' : forms.Select(attrs={'class':"form-control"}),
-            'piece_justificatif' : forms.FileInput(attrs={'class':"form-control"}),  
+            'piece_justificatif' : forms.FileInput(attrs={'class':"form-control"}),
+            'localite': forms.Select(attrs={'class':"form-control"}),
         }
 
 
@@ -43,7 +44,8 @@ class CasierJudiciareForm(forms.ModelForm):
             'adresse' : 'Entrez votre adresse avec la ville',
             'genre' : 'Genre',
             'telephone' : 'Numéro de téléphone',
-            'piece_justificatif' : 'Pièce justificative en votre posséssion'
+            'piece_justificatif' : 'Pièce justificative en votre posséssion',
+            'localite' : 'Endroit de retrait du casier judiciaire'
         }
 
         error_messages = {
